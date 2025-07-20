@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salsa Instrument Mixer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tone.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+	<link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="container bg-white rounded-2xl shadow-xl p-8">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-6 tracking-tight">Salsa Mixer</h1>
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Instruments</h2>
+            <div id="instrument-controls" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Instrument buttons will be dynamically added here by JavaScript -->
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Controls</h2>
+            <div class="flex flex-col items-center space-y-4">
+                <button id="play-pause-btn" class="play-pause-button px-8 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                    <span id="play-pause-text">Play</span>
+                </button>
+                <div class="w-full max-w-sm">
+                    <label for="volume-slider" class="block text-gray-600 text-sm font-medium mb-2">Master Volume</label>
+                    <input type="range" id="volume-slider" min="-60" max="0" value="-10" class="w-full">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Beat Counter</h2>
+            <div id="beat-display" class="flex justify-center items-center space-x-2 text-3xl font-bold text-gray-800">
+                <!-- Beat indicators will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+</body>
+<-- Link to JS files -->
+<script src="mixer.js"></script>
+</html>
