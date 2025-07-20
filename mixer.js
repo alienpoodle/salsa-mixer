@@ -35,35 +35,37 @@ let currentBeat = 0;
 const totalBeats = 8; // Basic salsa rhythm usually cycles on 8 beats
 let beatLoop; // Tone.Loop instance for the beat counter
 
-// Get references to DOM elements
-const instrumentControlsDiv = document.getElementById('instrument-controls');
-const playPauseBtn = document.getElementById('play-pause-btn');
-const playPauseText = document.getElementById('play-pause-text');
-const volumeSlider = document.getElementById('volume-slider');
-const beatDisplayDiv = document.getElementById('beat-display');
-const messageBox = document.getElementById('message-box');
-const messageText = document.getElementById('message-text');
-const messageBoxOkBtn = document.getElementById('message-box-ok-btn'); // This line gets the element
+// Declare DOM element variables globally, but assign them inside window.onload
+let instrumentControlsDiv;
+let playPauseBtn;
+let playPauseText;
+let volumeSlider;
+let beatDisplayDiv;
+let messageBox;
+let messageText;
+let messageBoxOkBtn;
 
 /**
  * Displays a custom message box.
  * @param {string} message - The message to display.
  */
 function showMessageBox(message) {
-    messageText.textContent = message;
-    messageBox.classList.remove('hidden');
+    if (messageText && messageBox) { // Ensure elements exist before trying to use them
+        messageText.textContent = message;
+        messageBox.classList.remove('hidden');
+    } else {
+        console.error("Message box elements not found. Cannot display message:", message);
+    }
 }
 
 /**
  * Hides the custom message box.
  */
 function hideMessageBox() {
-    messageBox.classList.add('hidden');
+    if (messageBox) { // Ensure element exists
+        messageBox.classList.add('hidden');
+    }
 }
-
-// Event listener for the message box OK button - MOVED TO window.onload
-// messageBoxOkBtn.addEventListener('click', hideMessageBox);
-
 
 /**
  * Initializes the audio players for each instrument.
@@ -228,11 +230,24 @@ async function togglePlayPause() {
     }
 }
 
-// Event listener for the main play/pause button
-playPauseBtn.addEventListener('click', togglePlayPause);
 
 // Initialize the app when the window loads
 window.onload = async () => {
+    // Get references to DOM elements here, inside window.onload
+    instrumentControlsDiv = document.getElementById('instrument-controls');
+    playPauseBtn = document.getElementById('play-pause-btn');
+    playPauseText = document.getElementById('play-pause-text');
+    volumeSlider = document.getElementById('volume-slider');
+    beatDisplayDiv = document.getElementById('beat-display');
+    messageBox = document.getElementById('message-box');
+    messageText = document.getElementById('message-text');
+    messageBoxOkBtn = document.getElementById('message-box-ok-btn');
+
+    // Event listener for the main play/pause button
+    playPauseBtn.addEventListener('click', togglePlayPause);
+    // Event listener for the message box OK button
+    messageBoxOkBtn.addEventListener('click', hideMessageBox);
+
     createInstrumentButtons();
     createBeatIndicators();
     await initializeAudio(); // Wait for audio to be initialized
@@ -260,7 +275,4 @@ window.onload = async () => {
         }
     });
     updateBeatDisplay(1); // Highlight the first beat initially
-
-    // Attach message box OK button listener here, after the DOM is ready
-    messageBoxOkBtn.addEventListener('click', hideMessageBox);
 };
