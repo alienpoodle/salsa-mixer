@@ -43,7 +43,7 @@ const volumeSlider = document.getElementById('volume-slider');
 const beatDisplayDiv = document.getElementById('beat-display');
 const messageBox = document.getElementById('message-box');
 const messageText = document.getElementById('message-text');
-const messageBoxOkBtn = document.getElementById('message-box-ok-btn');
+const messageBoxOkBtn = document.getElementById('message-box-ok-btn'); // This line gets the element
 
 /**
  * Displays a custom message box.
@@ -61,8 +61,8 @@ function hideMessageBox() {
     messageBox.classList.add('hidden');
 }
 
-// Event listener for the message box OK button
-messageBoxOkBtn.addEventListener('click', hideMessageBox);
+// Event listener for the message box OK button - MOVED TO window.onload
+// messageBoxOkBtn.addEventListener('click', hideMessageBox);
 
 
 /**
@@ -260,4 +260,7 @@ window.onload = async () => {
         }
     });
     updateBeatDisplay(1); // Highlight the first beat initially
+
+    // Attach message box OK button listener here, after the DOM is ready
+    messageBoxOkBtn.addEventListener('click', hideMessageBox);
 };
