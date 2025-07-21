@@ -241,12 +241,15 @@ window.onload = async () => {
     beatDisplayDiv = document.getElementById('beat-display');
     messageBox = document.getElementById('message-box');
     messageText = document.getElementById('message-text');
+
+    // Add this console.log to see the value right before the error
+    console.log('Attempting to get messageBoxOkBtn:', document.getElementById('message-box-ok-btn'));
     messageBoxOkBtn = document.getElementById('message-box-ok-btn');
+
 
     // Event listener for the main play/pause button
     playPauseBtn.addEventListener('click', togglePlayPause);
     // Event listener for the message box OK button
-    console.log('Value of messageBoxOkBtn:', messageBoxOkBtn); 
     messageBoxOkBtn.addEventListener('click', hideMessageBox);
 
     createInstrumentButtons();
