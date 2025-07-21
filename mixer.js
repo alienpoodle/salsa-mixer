@@ -246,6 +246,7 @@ window.onload = async () => {
     // Event listener for the main play/pause button
     playPauseBtn.addEventListener('click', togglePlayPause);
     // Event listener for the message box OK button
+    console.log('Value of messageBoxOkBtn:', messageBoxOkBtn); 
     messageBoxOkBtn.addEventListener('click', hideMessageBox);
 
     createInstrumentButtons();
